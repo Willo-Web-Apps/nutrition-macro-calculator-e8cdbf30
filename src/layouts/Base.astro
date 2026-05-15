@@ -8,7 +8,7 @@ interface Props {
   description?: string;
 }
 
-const { title = "Your New Business", description = "Quiero una p\u00e1gina que con el porcentaje de grasa altura grasa visceral pueda darme los nutrientes y macros para yo poder saber c\u00f3mo guiarme con la alimentaci\u00f3n si hago un volumen una definici\u00f3n o un mantenimiento" } = Astro.props;
+const { title = "Somatix — Tu composición corporal, convertida en un plan de alimentación", description = "Ingresa tu grasa corporal, grasa visceral y altura. Obtén tus macros exactos para volumen, definición o mantenimiento en segundos. Gratis, sin registro." } = Astro.props;
 
 // Canonical URL — drives <link rel="canonical">, og:url, sitemap, JSON-LD.
 // Astro.site is set in astro.config.mjs (`site:` field). If unset, this
@@ -23,13 +23,13 @@ const siteUrl = Astro.site?.href ?? '';
 const orgSchema = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Your New Business",
-  "description": "Quiero una p\u00e1gina que con el porcentaje de grasa altura grasa visceral pueda darme los nutrientes y macros para yo poder saber c\u00f3mo guiarme con la alimentaci\u00f3n si hago un volumen una definici\u00f3n o un mantenimiento",
+  "name": "Somatix",
+  "description": "Calculadora de macros y nutrientes basada en composición corporal real: grasa corporal, grasa visceral y altura. Planes de volumen, definición y mantenimiento.",
   "url": siteUrl,
 }).replace(/</g, '\\u003c');
 ---
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +41,7 @@ const orgSchema = JSON.stringify({
     <title>{title}</title>
     <script type="application/ld+json" set:html={orgSchema}></script>
   </head>
-  <body class="min-h-screen flex flex-col bg-surface-50 text-surface-900 font-body antialiased">
+  <body class="min-h-screen flex flex-col bg-surface-50 text-surface-950 font-body antialiased">
     <Header />
     <main class="flex-1">
       <slot />

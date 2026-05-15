@@ -1,62 +1,134 @@
-/* GOOGLE FONTS — Add @import url("https://fonts.googleapis.com/css2?...")
-   lines HERE, ABOVE @import "tailwindcss". CSS spec: every @import must
-   appear before any other rule (incl. @theme, @keyframes). A misplaced
-   @import will fail the build (`@import rules must precede all rules`). */
+/* GOOGLE FONTS — must stay ABOVE @import "tailwindcss" */
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&display=swap");
+
 @import "tailwindcss";
 
 /* -----------------------------------------------------------------------
-   Design Tokens — customize these to change the entire site's look.
-   The Product Agent should edit this @theme block to match the business:
-   - Swap fonts (add Google Fonts @import at the very TOP of this file,
-     then update --font-display / --font-body below)
-   - Change brand colors to match the business personality
-   - Flip surface colors for dark theme (swap light/dark values)
+   Design Tokens — Somatix
+   Warm dark theme: deep forest green + bold amber accent + warm white text
    ----------------------------------------------------------------------- */
 
 @theme {
-  /* Typography — replace with distinctive Google Fonts for the business */
-  --font-display: ui-sans-serif, system-ui, sans-serif;
-  --font-body: ui-sans-serif, system-ui, sans-serif;
+  /* Typography */
+  --font-display: 'Archivo Black', 'Arial Black', sans-serif;
+  --font-body: 'Barlow', 'Helvetica Neue', sans-serif;
 
-  /* Brand color scale — agent should customize per business */
-  --color-brand-50: oklch(0.97 0.01 250);
-  --color-brand-100: oklch(0.93 0.02 250);
-  --color-brand-200: oklch(0.87 0.04 250);
-  --color-brand-400: oklch(0.70 0.12 250);
-  --color-brand-500: oklch(0.60 0.16 250);
-  --color-brand-600: oklch(0.50 0.16 250);
+  /* Brand — Forest Green scale */
+  --color-brand-50:  oklch(0.96 0.02 152);
+  --color-brand-100: oklch(0.90 0.04 152);
+  --color-brand-200: oklch(0.78 0.07 152);
+  --color-brand-400: oklch(0.48 0.10 152);
+  --color-brand-500: oklch(0.36 0.09 152);
+  --color-brand-600: oklch(0.25 0.08 152);
 
-  /* Surface colors — light theme defaults. Flip for dark theme:
-     surface-50 becomes near-black, surface-900 becomes near-white */
-  --color-surface-50: oklch(0.985 0.002 250);
-  --color-surface-100: oklch(0.96 0.004 250);
-  --color-surface-200: oklch(0.92 0.006 250);
-  --color-surface-800: oklch(0.30 0.015 250);
-  --color-surface-900: oklch(0.20 0.015 250);
-  --color-surface-950: oklch(0.14 0.012 250);
+  /* Amber accent */
+  --color-accent-400: oklch(0.82 0.18 78);
+  --color-accent-500: oklch(0.75 0.18 75);
+  --color-accent-600: oklch(0.65 0.17 70);
+
+  /* Surface — DARK theme (near-black green → warm white) */
+  --color-surface-50:  oklch(0.13 0.04 152);   /* darkest — page bg */
+  --color-surface-100: oklch(0.18 0.05 152);   /* slightly lighter */
+  --color-surface-200: oklch(0.24 0.07 152);   /* card backgrounds */
+  --color-surface-800: oklch(0.88 0.01 80);    /* warm light gray text */
+  --color-surface-900: oklch(0.95 0.008 80);   /* near-white text */
+  --color-surface-950: oklch(0.99 0.004 80);   /* warm white — #FDFAF5 */
 }
 
-/* Page-load animations — CSS only, no JS required */
+/* Page-load animations */
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out both;
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px 4px oklch(0.75 0.18 75 / 0.25); }
+  50%       { box-shadow: 0 0 36px 8px oklch(0.75 0.18 75 / 0.45); }
 }
 
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out both;
+.animate-fade-in  { animation: fadeIn  0.6s ease-out both; }
+.animate-slide-up { animation: slideUp 0.6s ease-out both; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+.delay-100 { animation-delay: 0.10s; }
+.delay-200 { animation-delay: 0.20s; }
+.delay-300 { animation-delay: 0.30s; }
+.delay-400 { animation-delay: 0.40s; }
+.delay-500 { animation-delay: 0.50s; }
+
+/* Number result display */
+.result-number {
+  font-family: var(--font-display);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-/* Staggered animation delays for cascading reveals */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
+/* Grain overlay utility */
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Calculator input styling for dark theme */
+.calc-input {
+  background: oklch(0.13 0.04 152);
+  border: 1.5px solid oklch(0.30 0.07 152);
+  color: oklch(0.99 0.004 80);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  outline: none;
+}
+
+.calc-input:focus {
+  border-color: oklch(0.75 0.18 75);
+  box-shadow: 0 0 0 3px oklch(0.75 0.18 75 / 0.18);
+}
+
+.calc-input::placeholder {
+  color: oklch(0.50 0.05 152);
+}
+
+.calc-select {
+  background: oklch(0.13 0.04 152);
+  border: 1.5px solid oklch(0.30 0.07 152);
+  color: oklch(0.99 0.004 80);
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23FDFAF5' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+  transition: border-color 0.15s ease;
+}
+
+.calc-select:focus {
+  border-color: oklch(0.75 0.18 75);
+  box-shadow: 0 0 0 3px oklch(0.75 0.18 75 / 0.18);
+}
+
+.calc-select option {
+  background: oklch(0.18 0.05 152);
+}

@@ -1,11 +1,41 @@
 ---
 ---
-<header class="sticky top-0 z-50 border-b border-surface-200 bg-surface-50/80 backdrop-blur-lg">
+<header class="sticky top-0 z-50" style="background: oklch(0.13 0.04 152 / 0.92); border-bottom: 1px solid oklch(0.28 0.07 152 / 0.6); backdrop-filter: blur(16px) saturate(1.3);">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-    <a href="/" class="text-lg font-bold tracking-tight text-surface-900 font-display">Your New Business</a>
-    <div class="flex items-center gap-6">
-      <a href="/blog" class="text-sm font-medium text-surface-800/60 hover:text-surface-900 transition-colors">Blog</a>
-      <a href="#cta" class="text-sm font-semibold bg-brand-500 text-white px-4 py-2 rounded-lg hover:bg-brand-600 transition-colors">Get Started</a>
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 group">
+      <!-- S mark -->
+      <span class="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center font-display font-black text-sm transition-all duration-200 group-hover:scale-105"
+        style="background: oklch(0.75 0.18 75); color: oklch(0.13 0.04 152);">
+        S
+      </span>
+      <span class="text-lg font-display font-black tracking-tight" style="color: oklch(0.99 0.004 80);">Somatix</span>
+    </a>
+
+    <!-- Nav links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#cta" class="text-sm font-medium transition-colors duration-150" style="color: oklch(0.60 0.06 152);"
+        onmouseenter="this.style.color='oklch(0.88 0.01 80)'"
+        onmouseleave="this.style.color='oklch(0.60 0.06 152)'"
+      >Cómo funciona</a>
+      <a href="#cta" class="text-sm font-medium transition-colors duration-150" style="color: oklch(0.60 0.06 152);"
+        onmouseenter="this.style.color='oklch(0.88 0.01 80)'"
+        onmouseleave="this.style.color='oklch(0.60 0.06 152)'"
+      >Dispositivos</a>
     </div>
+
+    <!-- CTA -->
+    <a
+      href="#"
+      onclick="document.getElementById('body-fat').focus(); document.getElementById('body-fat').scrollIntoView({ behavior: 'smooth', block: 'center' }); return false;"
+      class="text-sm font-bold px-5 py-2.5 rounded-lg transition-all duration-200"
+      style="background: oklch(0.75 0.18 75); color: oklch(0.13 0.04 152);"
+      onmouseenter="this.style.background='oklch(0.82 0.18 78)'"
+      onmouseleave="this.style.background='oklch(0.75 0.18 75)'"
+    >
+      Calcular mis macros
+    </a>
+
   </nav>
 </header>
