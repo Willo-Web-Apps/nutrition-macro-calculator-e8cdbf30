@@ -1,0 +1,20 @@
+# Your New Business
+
+> URL: https://nutrition-macro-calculator.onrender.com
+
+> Quiero una página que con el porcentaje de grasa altura grasa visceral pueda darme los nutrientes y macros para yo poder saber cómo guiarme con la alimentación si hago un volumen una definición o un mantenimiento
+
+## About
+
+Your New Business is an AI-powered business. This file provides a brief overview for
+language model crawlers and AI assistants.
+
+## Pages
+
+- /: Home — learn about Your New Business and get started
+- /blog: Blog — articles, updates, and insights
+- /blog/[slug]: Individual blog posts
+
+## Contact
+
+For inquiries, please visit our website.

@@ -1,0 +1,17 @@
+{
+  "name": "your-new-business",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "5.18.1",
+    "@astrojs/sitemap": "3.7.2",
+    "@supabase/supabase-js": "2.45.4",
+    "@tailwindcss/vite": "4.2.4",
+    "tailwindcss": "4.2.4"
+  }
+}

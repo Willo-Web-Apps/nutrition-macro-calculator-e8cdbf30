@@ -1,0 +1,51 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Your New Business", description = "Quiero una p\u00e1gina que con el porcentaje de grasa altura grasa visceral pueda darme los nutrientes y macros para yo poder saber c\u00f3mo guiarme con la alimentaci\u00f3n si hago un volumen una definici\u00f3n o un mantenimiento" } = Astro.props;
+
+// Canonical URL — drives <link rel="canonical">, og:url, sitemap, JSON-LD.
+// Astro.site is set in astro.config.mjs (`site:` field). If unset, this
+// throws at build time, which is the desired loud failure rather than
+// silently emitting broken canonical markup.
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const siteUrl = Astro.site?.href ?? '';
+
+// Escape '<' as '\u003c' so a business name/description containing
+// "</script>" cannot break out of the JSON-LD <script> tag and execute
+// arbitrary JS — defense against stored XSS via tenant-controlled fields.
+const orgSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Your New Business",
+  "description": "Quiero una p\u00e1gina que con el porcentaje de grasa altura grasa visceral pueda darme los nutrientes y macros para yo poder saber c\u00f3mo guiarme con la alimentaci\u00f3n si hago un volumen una definici\u00f3n o un mantenimiento",
+  "url": siteUrl,
+}).replace(/</g, '\\u003c');
+---
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={orgSchema}></script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-surface-50 text-surface-900 font-body antialiased">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
